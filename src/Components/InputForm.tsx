@@ -36,7 +36,7 @@ const InputForm: FunctionComponent<Props> = ({ setResult }) => {
     }
     return (
         <form>
-            <textarea name="input-text" id="input-text" cols={30} rows={10} placeholder="Ingrese el texto aquí" onChange={handleChange}>{inputText}</textarea>
+            <textarea name="input-text" id="input-text" cols={30} rows={10} placeholder="Ingrese el texto aquí" onChange={handleChange} value={inputText}></textarea>
             <input type="button" value="Encriptar" onClick={handleClick} />
             <input type="button" value="Desencriptar" onClick={handleClick} />
         </form>
