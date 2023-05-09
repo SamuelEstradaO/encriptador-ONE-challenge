@@ -29,7 +29,7 @@ const InputForm: FunctionComponent<Props> = ({ setResult }) => {
         const key: string = event.currentTarget.value.toLowerCase();
         console.log(event.currentTarget.value.toLowerCase())
 
-        console.log(textOptions[key as "encriptar" | "desencriptar"](inputText))
+        setResult(textOptions[key as "encriptar" | "desencriptar"](inputText))
     }
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setinputText(event.currentTarget.value)
