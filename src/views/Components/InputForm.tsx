@@ -1,5 +1,6 @@
 import { log } from "console";
 import React, { FunctionComponent, SetStateAction, useState } from "react";
+import { Button } from "../../styles";
 interface Props {
     setResult: React.Dispatch<SetStateAction<string>>;
 }
@@ -25,20 +26,25 @@ const textOptions: { encriptar: (param: string) => string, desencriptar: (param:
 
 const InputForm: FunctionComponent<Props> = ({ setResult }) => {
     const [inputText, setinputText] = useState<string>("")
-    const handleClick = (event: React.MouseEvent<HTMLInputElement>) => {
-        const key: string = event.currentTarget.value.toLowerCase();
-        console.log(event.currentTarget.value.toLowerCase())
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        event.preventDefault();
+        const key: string = event.currentTarget.innerText.toLowerCase();
+        console.log(event.currentTarget.innerText.toLowerCase())
 
-        setResult(textOptions[key as "encriptar" | "desencriptar"](inputText))
+        setResult(textOptions[key as 'encriptar' | 'desencriptar'](inputText))
     }
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
         setinputText(event.currentTarget.value)
     }
     return (
-        <form>
-            <textarea name="input-text" id="input-text" cols={30} rows={10} placeholder="Ingrese el texto aquí" onChange={handleChange} value={inputText}></textarea>
-            <input type="button" value="Encriptar" onClick={handleClick} />
-            <input type="button" value="Desencriptar" onClick={handleClick} />
+        <form className="col-md-8 container-fluid px-3">
+            <div className="col-12 px-5 mb-3">
+                <textarea name="input-text" id="input-text" className="w-100" cols={30} rows={10} placeholder="Ingrese el texto aquí" onChange={handleChange} value={inputText}></textarea>
+            </div>
+            <div className="col-12 d-flex justify-content-evenly">
+                <Button type="button" onClick={handleClick} className="badge rounded-pill py-2" >Encriptar</Button>
+                <Button type="button" onClick={handleClick} className="badge rounded-pill py-2" >Desencriptar </Button>
+            </div>
         </form>
     )
 }

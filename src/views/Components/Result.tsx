@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useRef } from "react";
-import useCopyToClipboard from "../CustomHooks/useCopyToClipboard";
+import useCopyToClipboard from "../../CustomHooks/useCopyToClipboard";
+import { Button } from "../../styles";
 
 interface Props {
     result: string;
@@ -12,10 +13,10 @@ const Result: FunctionComponent<Props> = ({ result }) => {
         console.log(value);
     }
     return (
-        <div>
+        <div className="col-md-4">
             {result.length > 0 && <p ref={ref}>{result}</p>}
             {value}
-            <button onClick={handleClick}>Copiar</button>
+            <Button className="badge rounded-pill py-2" onClick={handleClick}>Copiar</Button>
         </div>
     )
 };
