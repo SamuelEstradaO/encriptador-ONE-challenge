@@ -6,6 +6,7 @@ import { useDebounce } from "../../CustomHooks/useDebounce";
 
 const Textarea = styled(TextareaTemplate)`
     background-color: #eef6fb;
+    color: #222b2f;
     height: 100%;
 `
 const Div = styled.div`

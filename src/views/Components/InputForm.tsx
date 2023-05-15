@@ -41,7 +41,7 @@ const InputForm: FunctionComponent<Props> = ({ setResult }) => {
     }, [debouncedValue, selection])
 
     const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-        setinputText(event.currentTarget.value.toLowerCase())
+        setinputText(event.currentTarget.value.replace(/[^\w\s.,!¿?¡]/gi, "").toLowerCase())
     }
     const handleSelection = (event: React.MouseEvent<HTMLInputElement>) => {
         console.log(event.currentTarget.id);
@@ -57,6 +57,7 @@ const InputForm: FunctionComponent<Props> = ({ setResult }) => {
                 <label className="btn btn-outline-warning" htmlFor="desencriptar">Desencriptar</label>
             </div>
             <Textarea style={{ maxHeight: "80%" }} name="input-text" id="input-text" className="col-12 p-2 position-absolute bottom-0 start-50 translate-middle-x" placeholder="Ingrese el texto aquí" onChange={handleChange} value={inputText} />
+            <p className="user-select-none position-absolute bottom-0 start-50 translate-middle-x text-center fs-6 fst-italic">No se permiten caracteres especiales exceptuando: . , ¡ ! ¿ ?</p>
         </form>
     )
 }
