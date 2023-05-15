@@ -1,10 +1,11 @@
 import { FunctionComponent, useState } from "react";
 import Result from "./Result";
 import InputForm from "./InputForm";
+
 const Main: FunctionComponent = () => {
     const [result, setResult] = useState<string>("")
     return (
-        <main className="row">
+        <main className="row" style={{ height: "inherit" }}>
             <InputForm setResult={setResult} />
             <Result result={result} />
         </main>

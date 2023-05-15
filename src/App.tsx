@@ -9,13 +9,14 @@ import Home from './views';
 
 const Div = styled.div`
   background-color: #222b2f;
+  height: 100vh;
 `
 
 function App() {
   return (
     <>
       <GlobalStyler />
-      <Div className="container py-3">
+      <Div className=" container d-flex flex-column py-3">
         <Home />
       </Div>
     </>
