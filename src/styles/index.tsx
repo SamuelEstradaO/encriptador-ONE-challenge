@@ -9,8 +9,10 @@ export const GlobalStyler = createGlobalStyle`
         color: #eef6fb;
     }
     html{
-
-        font-size: 20px;
+        font-size: 3vw;
+        @media (min-width: 768px){
+        font-size: 2vw;
+    }
     }
 `;
 export const Button = styled.button`

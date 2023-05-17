@@ -1,20 +1,25 @@
-import React, { FunctionComponent, useEffect, useRef, useState } from "react";
+import React, { FunctionComponent, useRef, useState } from "react";
 import useCopyToClipboard from "../../CustomHooks/useCopyToClipboard";
 import { Button, P, Textarea as TextareaTemplate } from "../../styles";
 import styled from "styled-components";
-import { useDebounce } from "../../CustomHooks/useDebounce";
 
 const Textarea = styled(TextareaTemplate)`
     background-color: #eef6fb;
     color: #222b2f;
-    height: 100%;
+    max-width: 95%;
 `
 const Div = styled.div`
     background-color: #eef6fb;
     border-radius: 1rem;
-    width: 90%;
+    width: 100%;
     height: 100%;
     color: black;
+`
+const Container = styled.div`
+    @media (max-width: 767px){
+        height: 100%;
+        max-height: 30vh;
+    }
 `
 interface Props {
     result: string;
@@ -36,20 +41,23 @@ const Result: FunctionComponent<Props> = ({ result }) => {
         }, 1500);
     }
     return (
-        <div className="col-md-4 position-relative container">
-            {result.length === 0 && <Div className="p-4 row mx-auto">
-                <img src="/the_search.svg" alt="" className="img-fluid col-12 m-auto" style={{ maxWidth: "290px" }} />
-                <h3 className="text-center" style={{ fontSize: "1.2rem" }}>Ningún mensaje fue encontrado</h3>
-            </Div>}
-            {result.length > 0 && <>
-                <Textarea readOnly className="p-2 position-absolute bottom-0 start-50 translate-middle-x" ref={ref} value={result}></Textarea>
-                {showButton && <Button className="badge rounded-pill py-2 mb-2 position-absolute bottom-0 start-50 translate-middle-x" onClick={handleClick}>Copiar</Button>}
-                {!showButton && !error && <P className="user-select-none badge rounded-pill py-2 mb-2 position-absolute bottom-0 start-50 translate-middle-x">Copiado</P>}
-                {!showButton && error && <P className="user-select-none badge rounded-pill text-bg-danger py-2 mb-2 position-absolute bottom-0 start-50 translate-middle-x">Copiado</P>}
+        <Container className="col-sm-12 col-md-4 mb-sm-2 mb-0">
+            <div className="container-fluid position-relative mx-0 row h-100">
+                {result.length === 0 && <Div className="p-4 col-12">
+                    <img src="/the_search.svg" alt="" className="img-fluid mb-1 d-none d-md-block" style={{ objectFit: "contain" }} />
+                    <h3 className="text-center" style={{ fontSize: "1.2rem" }}>Ningún mensaje fue encontrado</h3>
+                    <p className="text-center d-md-none">Ingresa el texto que desees encriptar o desencriptar</p>
+                </Div>}
+                {result.length > 0 && <div className="col-12">
+                    <Textarea readOnly className="p-2 position-absolute bottom-0 start-50 translate-middle-x" ref={ref} value={result}></Textarea>
+                    {showButton && <Button className="badge rounded-pill py-2 mb-2 position-absolute bottom-0 start-50 translate-middle-x" onClick={handleClick}>Copiar</Button>}
+                    {!showButton && !error && <P className="user-select-none badge rounded-pill py-2 mb-2 position-absolute bottom-0 start-50 translate-middle-x">Copiado</P>}
+                    {!showButton && error && <P className="user-select-none badge rounded-pill text-bg-danger py-2 mb-2 position-absolute bottom-0 start-50 translate-middle-x w-75">Copiado</P>}
 
-            </>}
+                </div>}
+            </div>
 
-        </div>
+        </Container>
     )
 };
 export default Result;
