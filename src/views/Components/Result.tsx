@@ -43,8 +43,8 @@ const Result: FunctionComponent<Props> = ({ result }) => {
         <Container className="col-sm-12 col-md-4 mb-sm-2 mb-0">
             <div className="z-3 bg-black">
                 <p>{error}</p></div>
-            <div className="container-fluid position-relative mx-0 row h-100">
-                {result.length === 0 && <Div className="p-4 col-12">
+            <div className="container-fluid position-relativer mx-0 row h-100">
+                {result.length === 0 && <Div className="p-4 col-12 d-flex flex-wrap align-content-center justify-content-center">
                     <img src="/the_search.svg" alt="" className="img-fluid mb-1 d-none d-md-block" style={{ objectFit: "contain" }} />
                     <h3 className="text-center" style={{ fontSize: "1.2rem" }}>Ningún mensaje fue encontrado</h3>
                     <p className="text-center d-md-none">Ingresa el texto que desees encriptar o desencriptar</p>
